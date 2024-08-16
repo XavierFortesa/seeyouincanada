@@ -1,0 +1,29 @@
+---
+import ExperienceItem from "./EducationItem.astro"
+const EXPERIENCIE = [
+  {
+    date: "2024/07",
+    title: "PeopleCert",
+    company: "ITIL® Foundation Certificate in IT Service Management",
+    description:
+      "Demonstrates a solid understanding of the ITIL framework, covering key concepts, terminology, and processes essential for effective IT service management. This certification verifies the ability to apply ITIL principles to improve service delivery, enhance customer satisfaction, and align IT services with business needs. It provides foundational knowledge in areas such as service strategy, design, transition, operation, and continual service improvement.",
+  },
+  {
+    date: "2013/01 - 2020/07",
+    title: "University of the Balearic Islands (UIB), Palma de Mallorca, Spain",
+    company: "Degree in Computer Engineering",
+    description:
+      "For my final project, I developed an automated Disaster Recovery Plan (DRP) leveraging Microsoft's Azure Cloud services. The project was driven by the increasing need for businesses to effectively manage risks associated with growing cybersecurity threats. It involved creating a comprehensive plan to ensure business continuity in the event of critical incidents such as disasters, fires, or power outages. The DRP focused on achieving key objectives like Recovery Time Objective (RTO) and Recovery Point Objective (RPO), which are essential for minimizing service downtime and data loss. I conducted a thorough analysis of potential solutions and procedures to select the most suitable approach for the existing infrastructure supporting client applications. The implementation was carried out using tools such as PowerShell and Ansible, ensuring an efficient and reliable recovery process aligned with the specific requirements of the project.",
+  },
+]
+---
+
+<ol class="relative mt-16">
+  {
+    EXPERIENCIE.map((experiencie) => (
+      <li class="">
+        <ExperienceItem {...experiencie} />
+      </li>
+    ))
+  }
+</ol>
