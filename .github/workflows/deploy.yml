@@ -1,51 +1,33 @@
-name: Deploy to GitHub Pages
+name: Deploy Astro Site to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+    branches:
+      - main  # Cambia esto si usas otro branch como `master`
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout your repository using git
-        uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20 # Usar la versión de Node.js adecuada
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
 
-      - name: Install pnpm
-        run: npm install -g pnpm
+    - name: Install dependencies
+      run: |
+        npm install -g pnpm
+        pnpm install
 
-      - name: Install dependencies
-        run: pnpm install --force
+    - name: Build Astro project
+      run: pnpm run build  # o `npm run build` si usas npm en lugar de pnpm
 
-      - name: Build your site
-        run: pnpm build
-
-      - name: Build and upload your site
-        uses: withastro/action@v2
-        with:
-          path: .
-          node-version: 20
-          package-manager: pnpm@8.6.0
-
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        branch: gh-pages  # o el nombre de la rama en la que deseas desplegar
+        folder: dist  # la carpeta de salida del build de Astro
