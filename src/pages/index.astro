@@ -2,7 +2,6 @@
 import GuestForm from '../components/GuestForm.astro';
 import GuestList from '../components/GuestList.astro';
 
-// Asegúrate de inicializar guests como un array vacío
 let guests = [];
 
 // Funciones para añadir y eliminar invitados
@@ -16,7 +15,7 @@ function removeGuest(index) {
 ---
 <html>
   <head>
-    <title>Fiesta de Despedida</title>
+    <title>Lista de Invitados</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -25,20 +24,56 @@ function removeGuest(index) {
         margin: 0;
         padding: 0;
       }
+
       header {
         background-color: #6200ea;
         color: white;
         padding: 1rem 0;
         text-align: center;
       }
+
       main {
         padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 2rem;
+      }
+
+      .table th,
+      .table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      .table th {
+        background-color: #6200ea;
+        color: white;
+        font-weight: bold;
+      }
+
+      .button {
+        background-color: #6200ea;
+        color: white;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .button:hover {
+        background-color: #4500b5;
       }
     </style>
   </head>
   <body>
     <header>
-      <h1>¡Mi Fiesta de Despedida!</h1>
+      <h1>Lista de Invitados - Fiesta</h1>
     </header>
     <main>
       <GuestForm addGuest={addGuest} />

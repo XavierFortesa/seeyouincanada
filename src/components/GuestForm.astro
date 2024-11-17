@@ -6,31 +6,38 @@ function handleSubmit(event) {
   const form = event.target;
   const name = form.name.value.trim();
   const foodPreference = form.foodPreference.value.trim();
-  
   if (name) {
     addGuest({ name, foodPreference });
     form.reset();
   }
 }
 ---
-
 <form on:submit={handleSubmit} style="margin-bottom: 2rem;">
-  <label>
-    Nombre:
-    <input type="text" name="name" required placeholder="Escribe tu nombre" />
-  </label>
-  <br />
-  
-  <label>
-    Preferencia alimenticia:
-    <select name="foodPreference">
-      <option value="none">Ninguna</option>
-      <option value="vegetariano">Vegetariano</option>
-      <option value="vegano">Vegano</option>
-      <option value="alergias">Alergias específicas</option>
-    </select>
-  </label>
-  <br />
-  
-  <button type="submit">Añadir</button>
+  <div style="margin-bottom: 1rem;">
+    <label>
+      Nombre:
+      <input
+        type="text"
+        name="name"
+        required
+        placeholder="Escribe tu nombre"
+        style="width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #ddd; border-radius: 4px;"
+      />
+    </label>
+  </div>
+  <div style="margin-bottom: 1rem;">
+    <label>
+      Preferencia alimenticia:
+      <select
+        name="foodPreference"
+        style="width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #ddd; border-radius: 4px;"
+      >
+        <option value="Ninguna">Ninguna</option>
+        <option value="Vegetariano">Vegetariano</option>
+        <option value="Vegano">Vegano</option>
+        <option value="Alergias específicas">Alergias específicas</option>
+      </select>
+    </label>
+  </div>
+  <button type="submit" class="button">Añadir a la lista</button>
 </form>

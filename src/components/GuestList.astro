@@ -1,17 +1,31 @@
 ---
-export let guests = []; // Default a un array vacío
+export let guests = [];
 export let removeGuest;
 ---
 
-<ul>
-  {guests.length === 0 ? (
-    <li>No hay invitados aún.</li>
-  ) : (
-    guests.map((guest, index) => (
-      <li key={index} style="margin-bottom: 1rem;">
-        <strong>{guest.name}</strong> - {guest.foodPreference}
-        <button on:click={() => removeGuest(index)} style="margin-left: 1rem;">Eliminar</button>
-      </li>
-    ))
-  )}
-</ul>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Preferencia alimenticia</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {guests.length === 0 ? (
+      <tr>
+        <td colspan="3" style="text-align: center;">No hay invitados aún.</td>
+      </tr>
+    ) : (
+      guests.map((guest, index) => (
+        <tr key={index}>
+          <td>{guest.name}</td>
+          <td>{guest.foodPreference}</td>
+          <td>
+            <button class="button" on:click={() => removeGuest(index)}>Eliminar</button>
+          </td>
+        </tr>
+      ))
+    )}
+  </tbody>
+</table>
