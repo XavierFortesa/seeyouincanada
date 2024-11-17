@@ -6,4 +6,9 @@ import robotsTxt from 'astro-robots-txt';
 export default defineConfig({
   integrations: [tailwind(), preact(), robotsTxt()],
   site: 'https://seeyouincanada.github.io/',
+  build: {
+    rollupOptions: {
+      external: ['preact', 'preact/hooks'],
+    },
+  },
 });
