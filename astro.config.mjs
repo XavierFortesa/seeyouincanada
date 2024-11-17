@@ -1,7 +1,6 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  output: 'static',
-  base: '/', // Cambia esto si tienes un subdirectorio
-  integrations: [],
+  site: 'https://propiuskas.github.io', // El URL de tu sitio web
+  output: 'static',  // Salida estática para GitHub Pages
 });
