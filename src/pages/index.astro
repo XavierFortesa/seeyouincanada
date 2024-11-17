@@ -1,8 +1,11 @@
 ---
 import GuestForm from '../components/GuestForm.astro';
-import GuestList from '../components/GuestList.astro'; 
+import GuestList from '../components/GuestList.astro';
+
+// Asegúrate de inicializar guests como un array vacío
 let guests = [];
 
+// Funciones para añadir y eliminar invitados
 function addGuest(guest) {
   guests = [...guests, guest];
 }
