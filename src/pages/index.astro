@@ -1,8 +1,5 @@
 ---
-import { useState } from 'preact/hooks';
-
-// Lista inicial de asistentes
-const [attendees, setAttendees] = useState([]);
+import AttendeeForm from '../components/Form.jsx';
 ---
 
 <html>
@@ -12,45 +9,8 @@ const [attendees, setAttendees] = useState([]);
   </head>
   <body>
     <h1>¡See You in Canada!</h1>
-
     <p>Acompáñame en mi despedida mientras me preparo para este emocionante nuevo capítulo en Canadá.</p>
 
-    <!-- Formulario para añadir asistentes -->
-    <form id="attendeeForm" onSubmit={(e) => {
-      e.preventDefault();
-      const name = e.target.name.value;
-      const preference = e.target.preference.value;
-      if (name) {
-        setAttendees([...attendees, { name, preference }]);
-        e.target.reset(); // Limpia el formulario
-      }
-    }}>
-      <label>
-        Nombre:
-        <input type="text" name="name" required />
-      </label>
-      <br />
-      <label>
-        Preferencia Alimentaria:
-        <select name="preference" required>
-          <option value="Normal">Normal</option>
-          <option value="Vegetariano">Vegetariano</option>
-          <option value="Vegano">Vegano</option>
-          <option value="Alergia">Alergia</option>
-        </select>
-      </label>
-      <br />
-      <button type="submit">Añadir</button>
-    </form>
-
-    <!-- Lista de asistentes -->
-    <h2>Lista de Asistentes</h2>
-    <ul>
-      {attendees.map((attendee, index) => (
-        <li key={index}>
-          {attendee.name} ({attendee.preference})
-        </li>
-      ))}
-    </ul>
+    <AttendeeForm />
   </body>
 </html>
