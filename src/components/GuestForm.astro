@@ -6,9 +6,10 @@ function handleSubmit(event) {
   const form = event.target;
   const name = form.name.value.trim();
   const foodPreference = form.foodPreference.value.trim();
+
   if (name) {
-    addGuest({ name, foodPreference });
-    form.reset();
+    addGuest({ name, foodPreference }); // Llama a la función para añadir el invitado
+    form.reset(); // Resetea el formulario
   }
 }
 ---

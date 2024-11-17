@@ -2,15 +2,16 @@
 import GuestForm from '../components/GuestForm.astro';
 import GuestList from '../components/GuestList.astro';
 
-let guests = [];
+let guests = []; // Lista reactiva para invitados
 
-// Funciones para añadir y eliminar invitados
+// Función para añadir invitados
 function addGuest(guest) {
-  guests = [...guests, guest];
+  guests = [...guests, guest]; // Actualiza la lista de invitados
 }
 
+// Función para eliminar un invitado
 function removeGuest(index) {
-  guests = guests.filter((_, i) => i !== index);
+  guests = guests.filter((_, i) => i !== index); // Filtra los invitados eliminando el seleccionado
 }
 ---
 <html>
@@ -76,7 +77,9 @@ function removeGuest(index) {
       <h1>Lista de Invitados - Fiesta</h1>
     </header>
     <main>
+      <!-- Componente de formulario -->
       <GuestForm addGuest={addGuest} />
+      <!-- Componente de lista -->
       <GuestList guests={guests} removeGuest={removeGuest} />
     </main>
   </body>
