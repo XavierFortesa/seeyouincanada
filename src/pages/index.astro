@@ -1,57 +1,56 @@
 ---
-import Layout from "@/layouts/Layout.astro"
+import { useState } from 'preact/hooks';
 
-import AboutMe from "@/components/AboutMe.astro"
-import Briefcase from "@/components/icons/Briefcase.astro"
-import BriefLearn from "@/components/icons/Education.astro"
-import CodeIcon from "@/components/icons/Code.astro"
-import Experience from "@/components/Experience.astro"
-import ProfileCheck from "@/components/icons/ProfileCheck.astro"
-import Education from "@/components/Education.astro"
-import SectionContainer from "@/components/SectionContainer.astro"
-import Hero from "@/components/Hero.astro"
+// Lista inicial de asistentes
+const [attendees, setAttendees] = useState([]);
 ---
 
-<Layout
-  title="Xavier portfolio - IT System Administrator and Devops Engineer with over 6 years of experience"
-  description="Hire Xavier to optimize your IT infrastructure and streamline your operations. Experienced SysAdmin and DevOps Engineer. Specialized in automation, cloud solutions, and robust system management."
->
-  <main class="px-4">
-    <SectionContainer class="py-16 md:py-36">
-      <Hero>
-      </slot>
-    </Hero>
-    </SectionContainer>
-    <div class="space-y-24">
-    <SectionContainer id="experience">
-      <h2
-        class="flex items-center mb-6 text-3xl font-semibold gap-x-3 text-black/80 dark:text-white"
-      >
-        <Briefcase class="size-8" />
-        Professional Experience
-      </h2>
-      <Experience />
-    </SectionContainer>
+<html>
+  <head>
+    <title>See You in Canada</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <h1>¡See You in Canada!</h1>
 
-    <SectionContainer id="education">
-      <h2
-        class="flex items-center mb-6 text-3xl font-semibold gap-x-3 text-black/80 dark:text-white"
-      >
-        <BriefLearn class="size-8" />
-        Education
-      </h2>
-      <Education />
-    </SectionContainer>
+    <p>Acompáñame en mi despedida mientras me preparo para este emocionante nuevo capítulo en Canadá.</p>
 
-    <SectionContainer id="about-me">
-      <h2
-        class="flex items-center mb-6 text-3xl font-semibold gap-x-8 text-black/80 dark:text-white"
-      >
-        <ProfileCheck class="size-8" />
-        About me
-      </h2>
-      <AboutMe />
-    </SectionContainer>
-  </div>
-  </main>
-</Layout>
+    <!-- Formulario para añadir asistentes -->
+    <form id="attendeeForm" onSubmit={(e) => {
+      e.preventDefault();
+      const name = e.target.name.value;
+      const preference = e.target.preference.value;
+      if (name) {
+        setAttendees([...attendees, { name, preference }]);
+        e.target.reset(); // Limpia el formulario
+      }
+    }}>
+      <label>
+        Nombre:
+        <input type="text" name="name" required />
+      </label>
+      <br />
+      <label>
+        Preferencia Alimentaria:
+        <select name="preference" required>
+          <option value="Normal">Normal</option>
+          <option value="Vegetariano">Vegetariano</option>
+          <option value="Vegano">Vegano</option>
+          <option value="Alergia">Alergia</option>
+        </select>
+      </label>
+      <br />
+      <button type="submit">Añadir</button>
+    </form>
+
+    <!-- Lista de asistentes -->
+    <h2>Lista de Asistentes</h2>
+    <ul>
+      {attendees.map((attendee, index) => (
+        <li key={index}>
+          {attendee.name} ({attendee.preference})
+        </li>
+      ))}
+    </ul>
+  </body>
+</html>
