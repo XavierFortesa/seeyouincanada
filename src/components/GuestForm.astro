@@ -1,22 +1,26 @@
 ---
 export let addGuest;
+
 function handleSubmit(event) {
   event.preventDefault();
   const form = event.target;
   const name = form.name.value.trim();
   const foodPreference = form.foodPreference.value.trim();
+  
   if (name) {
     addGuest({ name, foodPreference });
     form.reset();
   }
 }
 ---
+
 <form on:submit={handleSubmit} style="margin-bottom: 2rem;">
   <label>
     Nombre:
     <input type="text" name="name" required placeholder="Escribe tu nombre" />
   </label>
   <br />
+  
   <label>
     Preferencia alimenticia:
     <select name="foodPreference">
@@ -27,5 +31,6 @@ function handleSubmit(event) {
     </select>
   </label>
   <br />
+  
   <button type="submit">Añadir</button>
 </form>
