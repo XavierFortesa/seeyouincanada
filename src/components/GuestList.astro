@@ -1,0 +1,12 @@
+---
+export let guests;
+export let removeGuest;
+---
+<ul>
+  {guests.map((guest, index) => (
+    <li key={index} style="margin-bottom: 1rem;">
+      <strong>{guest.name}</strong> - {guest.foodPreference}
+      <button on:click={() => removeGuest(index)} style="margin-left: 1rem;">Eliminar</button>
+    </li>
+  ))}
+</ul>

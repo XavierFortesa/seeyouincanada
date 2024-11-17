@@ -1,16 +1,45 @@
 ---
-import AttendeeForm from '../components/Form.jsx';
----
+import GuestForm from '../components/GuestForm.astro';
+import GuestList from '../components/GuestList.astro';
+let guests = [];
 
+function addGuest(guest) {
+  guests = [...guests, guest];
+}
+
+function removeGuest(index) {
+  guests = guests.filter((_, i) => i !== index);
+}
+---
 <html>
   <head>
-    <title>See You in Canada</title>
-    <link rel="stylesheet" href="/styles.css" />
+    <title>Fiesta de Despedida</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background-color: #6200ea;
+        color: white;
+        padding: 1rem 0;
+        text-align: center;
+      }
+      main {
+        padding: 2rem;
+      }
+    </style>
   </head>
   <body>
-    <h1>¡See You in Canada!</h1>
-    <p>Acompáñame en mi despedida mientras me preparo para este emocionante nuevo capítulo en Canadá.</p>
-
-    <AttendeeForm />
+    <header>
+      <h1>¡Mi Fiesta de Despedida!</h1>
+    </header>
+    <main>
+      <GuestForm addGuest={addGuest} />
+      <GuestList guests={guests} removeGuest={removeGuest} />
+    </main>
   </body>
 </html>
